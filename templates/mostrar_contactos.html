@@ -6,7 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Bienvenidos a Agenda</h1>
-    <a href="{{ url_for('mostrar_agenda') }}">Mostrar contactos</a>
+    {% for elemento in contactos %}
+            <ul>Nombre: {{ elemento.nombre }}</ul>
+            <ul>Empresa: {{ elemento.empresa }}</ul>
+        {% endfor %}
 </body>
 </html>

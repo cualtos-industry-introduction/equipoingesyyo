@@ -1,4 +1,4 @@
-from flask import Flask 
+from flask import Flask, render_template
 from agenda import Agenda
 from contacto import Contacto
 
@@ -19,7 +19,7 @@ def mostrar_menu():
     print("6. Salir")
 
 salida = "1"
-while(salida == "1"):
+"""while(salida == "1"):
     mostrar_menu()
     entrada = input ("Escribe la opcion: ")
     
@@ -45,7 +45,14 @@ while(salida == "1"):
     elif entrada ==  "6":
         exit()
     else:
-        print("Opcion no valida")
+        print("Opcion no valida")"""
+
+ #Hacer rutas   
+     
+@app.route('/')
+def indice():
+    return render_template ('indice.html')
+
 
 if __name__ == "__main__":
     app.run()

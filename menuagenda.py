@@ -1,5 +1,9 @@
+from flask import Flask 
 from agenda import Agenda
 from contacto import Contacto
+
+app = Flask(__name__)
+
 
 agenda = Agenda('nueva_agenda')
 contactos = agenda.obtenerContactos()
@@ -42,3 +46,6 @@ while(salida == "1"):
         exit()
     else:
         print("Opcion no valida")
+
+if __name__ == "__main__":
+    app.run()

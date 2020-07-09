@@ -7,8 +7,11 @@
 </head>
 <body>
     {% for elemento in contactos %}
-            <ul>Nombre: {{ elemento.nombre }}</ul>
-            <ul>Empresa: {{ elemento.empresa }}</ul>
+            <ul><b>Nombre:</b>{{ elemento.nombre }}</ul>
+            <ul><b>Empresa:</b> {{ elemento.empresa }}</ul>
+            <ul><b>Correo:</b> {{ elemento.correo }}</ul>
+            <ul><b>Teléfono:</b> {{ elemento.telefono }}</ul>
+            <ul><b>Nota:</b> {{ elemento.nota }}</ul><hr>
         {% endfor %}
     <form method="get" action="{{ url_for('indice') }}">
         <button type="submit">        

@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from agenda import Agenda
 from contacto import Contacto
 
@@ -57,6 +57,34 @@ def mostrar_agenda():
     agenda = Agenda('nueva_agenda')
     contactos = agenda.obtenerContactos()
     return render_template ('mostrar_contactos.html', contactos=contactos)
+
+@app.route('/agregar_agenda', methods=['GET', 'POST'])
+def agregar_agenda():
+    agenda = Agenda('nueva_agenda')
+    contactos = agenda.obtenerContactos()
+    if request.method == 'POST':
+        nuevo_contacto = Contacto(request.form['nombre'])        
+        nuevo_contacto.empresa=request.form['empresa']
+        nuevo_contacto.correo=request.form['correo']
+        nuevo_contacto.telefono=request.form['telefono']
+        nuevo_contacto.nota=request.form['nota']
+        contactos.append(nuevo_contacto)
+        agenda.agregarContactos(contactos)
+        agenda.guardar()
+        return render_template('indice.html')
+    elif request.method == 'GET':
+        return render_template('agregar_agenda.html')
+@app.route('/consultar_agenda')
+def consultar_agenda():
+    return render_template ('consultar_agenda.html')
+
+@app.route('/actualizar_agenda')
+def actualizar_agenda():
+    return render_template ('actualizar_agenda.html')
+
+@app.route('/eliminar_agenda')
+def eliminar_agenda():
+    return render_template ('eliminar_agenda.html')
 
 if __name__ == "__main__":
     app.run()

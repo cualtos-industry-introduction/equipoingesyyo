@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Consultar</title>
 </head>
 <body>
-    {% for elemento in contactos %}
-            <ul>Nombre: {{ elemento.nombre }}</ul>
-            <ul>Empresa: {{ elemento.empresa }}</ul>
-        {% endfor %}
+    <h1>Consultar</h1>
     <form method="get" action="{{ url_for('indice') }}">
         <button type="submit">        
         <b>Inicio</b><br />       
         </button>        
-    </form>
+        </form>
+
 </body>
 </html>

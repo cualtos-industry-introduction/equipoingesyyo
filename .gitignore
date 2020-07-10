@@ -4,3 +4,6 @@ Lib/
 Scripts/
 pyvenv.cfg
 .DS_Store
+.DS_Store
+.gitignore
+.DS_Store

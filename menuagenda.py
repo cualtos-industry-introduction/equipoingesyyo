@@ -90,7 +90,7 @@ def consultar_agenda():
         consulta={}
         return render_template ('consultar_agenda.html',consulta=consulta)
 
-@app.route('/actualizar_agenda')
+@app.route('/actualizar_agenda',methods=['GET', 'POST'])
 def actualizar_agenda():
     if request.method == 'POST':
         nuevo_contacto = {}

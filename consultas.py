@@ -25,8 +25,8 @@ def agregar_contacto(registros):
 
 def actualizar_contacto(nombre, registros):
     resultado = coleccion.update_one({'nombre': nombre}, 
-        {'$set': {'empresa': registros['empresa'],'correo':registros['correo'],'telefono',registros['telefono'],'puesto':registros['puesto'],'nota':registros['nota']}})
-        
+        {'$set': {'empresa': registros['empresa'],'correo':registros['correo'],'telefono':registros['telefono'],'puesto':registros['puesto'],'nota':registros['nota']}})
+
         
     return str(resultado.modified_count)
 

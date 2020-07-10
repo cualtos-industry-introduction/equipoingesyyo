@@ -80,6 +80,7 @@ def agregar_agenda():
         return render_template('agregar_agenda.html')
 @app.route('/consultar_agenda')
 def consultar_agenda():
+    
     return render_template ('consultar_agenda.html')
 
 @app.route('/actualizar_agenda')

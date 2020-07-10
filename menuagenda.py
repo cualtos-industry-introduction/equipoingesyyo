@@ -55,8 +55,9 @@ def indice():
 
 @app.route('/mostrar_agenda')
 def mostrar_agenda():
-    agenda = Agenda('nueva_agenda')
-    contactos = agenda.obtenerContactos()
+   # agenda = Agenda('nueva_agenda')
+   # contactos = agenda.obtenerContactos()
+    contactos = mostrar_contactos()
     return render_template ('mostrar_contactos.html', contactos=contactos)
 
 @app.route('/agregar_agenda', methods=['GET', 'POST'])
@@ -91,15 +92,26 @@ def consultar_agenda():
 
 @app.route('/actualizar_agenda')
 def actualizar_agenda():
-    return render_template ('actualizar_agenda.html')
+    if request.method == 'POST':
+        nuevo_contacto = {}
+        nuevo_contacto['nombre']= request.form['nombre']
+        nuevo_contacto['empresa']= request.form['empresa']
+        nuevo_contacto['correo']= request.form['correo']
+        nuevo_contacto['telefono']= request.form['telefono']
+        nuevo_contacto['puesto']= request.form['puesto']
+        nuevo_contacto['nota']= request.form['nota']
+        consulta = actualizar_contacto(request.form['nombre'],nuevo_contacto)
+        return render_template ('actualizar_agenda.html',consulta=consulta)
+    elif request.method == 'GET':
+        consulta={}
+        return render_template ('actualizar_agenda.html',consulta=consulta)
 
-@app.route('/eliminar_agenda')
- 
+@app.route('/eliminar_agenda',methods=['GET', 'POST'])
 def eliminar_agenda():
     if request.method == 'POST':
         consulta = eliminar_contacto(request.form['nombre'])
         return render_template ('eliminar_agenda.html', consulta=consulta)
-        request.DeleteOne({'nombre': consulta})
+        
     elif request.method == 'GET':
         consulta={}
         return render_template ('eliminar_agenda.html',consulta=consulta)

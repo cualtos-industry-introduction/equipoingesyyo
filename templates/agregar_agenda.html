@@ -8,12 +8,15 @@
 <body>
     <h1>Agregar</h1>
         <form method="POST">
+            <input type="text" name="nombre" id="nombre"></input>
+            <button type="submit">Enviar</button>
             <label><b>Nombre:</b><input type="text" name="nombre" id="nombre"></label><br><br>
             <label><b>Empresa:</b><input type="text" name="empresa" id="empresa"></label><br><br>
             <label><b>Correo electrónico:</b><input type="text" name="correo" id="correo"></label><br><br>
             <label><b>Teléfono:</b><input type="text" name="telefono" id="telefono"></label><br><br>
+            <label><b>Puesto:</b><input type="text" name="puesto" id="puesto"></label><br><br>
             <label><b>Nota:</b><input type="text" name="nota" id="nota"></label><br><br>
-            <button type="submit">Enviar</button>
+          
         </form>
         <form method="get" action="{{ url_for('indice') }}">
             <button type="submit">        

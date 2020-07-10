@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from agenda import Agenda
 from contacto import Contacto
+from consultas import mostrar_contactos, consultar_contacto, agregar_contacto, actualizar_contacto
 
 app = Flask(__name__)
 
@@ -62,6 +63,7 @@ def mostrar_agenda():
 def agregar_agenda():
     agenda = Agenda('nueva_agenda')
     contactos = agenda.obtenerContactos()
+    
     if request.method == 'POST':
         nuevo_contacto = Contacto(request.form['nombre'])        
         nuevo_contacto.empresa=request.form['empresa']
@@ -71,6 +73,8 @@ def agregar_agenda():
         contactos.append(nuevo_contacto)
         agenda.agregarContactos(contactos)
         agenda.guardar()
+        contacto = nuevo_contacto.obtenerDatos()
+        agregar_contacto(contacto)
         return render_template('indice.html')
     elif request.method == 'GET':
         return render_template('agregar_agenda.html')

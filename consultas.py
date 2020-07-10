@@ -1,4 +1,4 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, DeleteOne
 
 cliente = MongoClient('localhost', 27017)
 #db = cliente.ejemplo_pymongo
@@ -12,6 +12,10 @@ def mostrar_contactos():
     return list(cursor)
 
 def consultar_contacto(titulo):
+    resultado = coleccion.find_one({'nombre': titulo})
+    return resultado
+
+def eliminar_contacto(titulo):
     resultado = coleccion.find_one({'nombre': titulo})
     return resultado
 

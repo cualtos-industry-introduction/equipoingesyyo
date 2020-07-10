@@ -7,12 +7,18 @@
 </head>
 <body>
     <h1>Consultar</h1>
-    <form method="get" >
+    <form method="POST" >
         <input type="text" name="nombre" id="nombre"></input>
-        <button type="submit">        
-        <b>Inicio</b><br />       
+        <button type="submit">    
+        <b>Consultar</b><br />       
         </button>        
         </form>
+    <p>{{consulta['nombre']}}</p>
+    <p>{{consulta['empresa']}}</p>
+    <p>{{consulta['correo']}}</p>
+    <p>{{consulta['telefono']}}</p>
+    <p>{{consulta['puesto']}}</p>
+    <p>{{consulta['nota']}}</p>
 
 </body>
 </html>

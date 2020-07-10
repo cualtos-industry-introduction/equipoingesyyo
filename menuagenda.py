@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from agenda import Agenda
 from contacto import Contacto
-from consultas import mostrar_contactos, consultar_contacto, agregar_contacto, actualizar_contacto
+from consultas import mostrar_contactos, consultar_contacto, agregar_contacto, actualizar_contacto,eliminar_contacto
 
 app = Flask(__name__)
 
@@ -78,18 +78,31 @@ def agregar_agenda():
         return render_template('indice.html')
     elif request.method == 'GET':
         return render_template('agregar_agenda.html')
-@app.route('/consultar_agenda')
+
+@app.route('/consultar_agenda',methods=['GET', 'POST'])
+
 def consultar_agenda():
-    
-    return render_template ('consultar_agenda.html')
+    if request.method == 'POST':
+        consulta = consultar_contacto(request.form['nombre'])
+        return render_template ('consultar_agenda.html', consulta=consulta)
+    elif request.method == 'GET':
+        consulta={}
+        return render_template ('consultar_agenda.html',consulta=consulta)
 
 @app.route('/actualizar_agenda')
 def actualizar_agenda():
     return render_template ('actualizar_agenda.html')
 
 @app.route('/eliminar_agenda')
+ 
 def eliminar_agenda():
-    return render_template ('eliminar_agenda.html')
+    if request.method == 'POST':
+        consulta = eliminar_contacto(request.form['nombre'])
+        return render_template ('eliminar_agenda.html', consulta=consulta)
+        request.DeleteOne({'nombre': consulta})
+    elif request.method == 'GET':
+        consulta={}
+        return render_template ('eliminar_agenda.html',consulta=consulta)
 
 if __name__ == "__main__":
     app.run()
